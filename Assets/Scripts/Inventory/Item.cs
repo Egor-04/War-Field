@@ -7,4 +7,6 @@ public class Item : MonoBehaviour
     public WeaponType TypeWeapon;
     public int ID;
     public string ItemName;
+    public Sprite Icon;
+    public GameObject DropPrefab;
 }
