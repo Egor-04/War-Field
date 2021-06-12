@@ -1446,9 +1446,9 @@ MonoBehaviour:
   _interpolationSpeed: 0.7
   _buttonRun: 304
   _buttonJump: 32
-  _red: 0
-  _green: 1
-  _blue: 1
+  _red: 1
+  _green: 0.77
+  _blue: 0
   _isGrounded: 0
 --- !u!1001 &567419164
 PrefabInstance:
