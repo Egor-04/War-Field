@@ -6,13 +6,13 @@ public class DisableCell : MonoBehaviour
 
     private float _currentTime;
 
-    private void Start()
-    {
-        _currentTime = _timeToDisable;
-    }
-
     private void Update()
     {
+        if (gameObject.activeSelf && _currentTime <= 0f)
+        {
+            _currentTime = _timeToDisable;
+        }
+
         _currentTime -= Time.deltaTime;
 
         if (_currentTime <= 0f)

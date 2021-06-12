@@ -8,5 +8,4 @@ public class Item : MonoBehaviour
     public int ID;
     public string ItemName;
     public Sprite Icon;
-    public GameObject DropPrefab;
 }

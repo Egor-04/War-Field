@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -23,17 +24,28 @@ public class Inventory : MonoBehaviour
     [Header("Items In Hand")]
     public ItemInHand[] ItemsInHand;
 
+    [Header("Drop Items")]
+    public DropItem[] DropItems;
+
+    [Serializable]
     public class ItemInHand
     {
         public int ID;
         public GameObject ItemPrefab;
     }
 
+    [Serializable]
+    public class DropItem
+    {
+        public int ID;
+        public GameObject DropPrefab;
+    }
+
     private void Start()
     {
         InventoryItems = new List<Item>();
 
-        for (int i = 0; i < InventoryItems.Count; i++)
+        for (int i = 0; i < _inventoryUI.childCount; i++)
         {
             InventoryItems.Add(new Item());
         }
@@ -41,15 +53,20 @@ public class Inventory : MonoBehaviour
 
     private void Update()
     {
-        Ray ray = new Ray(_playerCamera.transform.position, _playerCamera.transform.forward);
-        RaycastHit hit;
+        Debug.DrawRay(_playerCamera.transform.position, _playerCamera.transform.forward * _rayLength, Color.green);
 
-        if (Physics.Raycast(ray, out hit, _rayLength))
+        if (Input.GetKeyDown(_takeItem))
         {
-            if (hit.collider.GetComponent<Item>())
+            Ray ray = new Ray(_playerCamera.transform.position, _playerCamera.transform.forward);
+            RaycastHit hit;
+
+            if (Physics.Raycast(ray, out hit, _rayLength))
             {
-                Item currentItem = hit.collider.GetComponent<Item>();
-                AddItem(currentItem);
+                if (hit.collider.GetComponent<Item>())
+                {
+                    Item currentItem = hit.collider.GetComponent<Item>();
+                    AddItem(currentItem);
+                }
             }
         }
     }
@@ -76,60 +93,83 @@ public class Inventory : MonoBehaviour
 
     private void PistolCategory(Item currentItem)
     {
-        if (InventoryItems[0] != null)
+        if (InventoryItems[0] != new Item())
         {
-            Instantiate(InventoryItems[0].DropPrefab, currentItem.transform.position, currentItem.transform.rotation);
-            InventoryItems[0] = currentItem;
-            _inventoryUI.GetChild(0).GetChild(0).GetComponent<Image>().sprite = currentItem.Icon;
-            _inventoryUI.GetChild(0).gameObject.SetActive(true);
-            Destroy(currentItem);
+            for (int i = 0; i < DropItems.Length; i++)
+            {
+                if (InventoryItems[0].ID == DropItems[i].ID)
+                {
+                    Instantiate(DropItems[i].DropPrefab, currentItem.transform.position, currentItem.transform.rotation);
+                    InventoryItems[0] = currentItem;
+                    _inventoryUI.GetChild(0).GetChild(0).GetComponent<Image>().sprite = currentItem.Icon;
+                    _inventoryUI.GetChild(0).gameObject.SetActive(true);
+                    Destroy(currentItem.gameObject);
+                    return;
+                }
+            }
         }
         else
         {
             InventoryItems[0] = currentItem;
             _inventoryUI.GetChild(0).GetChild(0).GetComponent<Image>().sprite = currentItem.Icon;
             _inventoryUI.GetChild(0).gameObject.SetActive(true);
-            Destroy(currentItem);
+            Destroy(currentItem.gameObject);
             return;
         }
     }
 
     private void RifleCategory(Item currentItem)
     {
-        if (InventoryItems[1] != null)
+        if (InventoryItems[1] != new Item())
         {
-            Instantiate(InventoryItems[1].DropPrefab, currentItem.transform.position, currentItem.transform.rotation);
-            InventoryItems[1] = currentItem;
-            _inventoryUI.GetChild(1).GetChild(0).GetComponent<Image>().sprite = currentItem.Icon;
-            _inventoryUI.GetChild(1).gameObject.SetActive(true);
-            Destroy(currentItem);
+            for (int i = 0; i < DropItems.Length; i++)
+            {
+                if (InventoryItems[1].ID == DropItems[i].ID)
+                {
+                    Instantiate(DropItems[i].DropPrefab, currentItem.transform.position, currentItem.transform.rotation);
+
+                    InventoryItems[1] = currentItem;
+                    _inventoryUI.GetChild(1).GetChild(0).GetComponent<Image>().sprite = currentItem.Icon;
+                    _inventoryUI.GetChild(1).gameObject.SetActive(true);
+                    Destroy(currentItem.gameObject);
+                    return;
+                }
+            }
         }
         else
         {
             InventoryItems[1] = currentItem;
             _inventoryUI.GetChild(1).GetChild(0).GetComponent<Image>().sprite = currentItem.Icon;
             _inventoryUI.GetChild(1).gameObject.SetActive(true);
-            Destroy(currentItem);
+            Destroy(currentItem.gameObject);
             return;
         }
     }
 
     private void GrenadeCategory(Item currentItem)
     {
-        if (InventoryItems[2] != null)
+        if (InventoryItems[2] != new Item())
         {
-            Instantiate(InventoryItems[2].DropPrefab, currentItem.transform.position, currentItem.transform.rotation);
-            InventoryItems[2] = currentItem;
-            _inventoryUI.GetChild(2).GetChild(0).GetComponent<Image>().sprite = currentItem.Icon;
-            _inventoryUI.GetChild(2).gameObject.SetActive(true);
-            Destroy(currentItem);
+            for (int i = 0; i < DropItems.Length; i++)
+            {
+                if (InventoryItems[2].ID == DropItems[i].ID)
+                {
+                    Instantiate(DropItems[i].DropPrefab, currentItem.transform.position, currentItem.transform.rotation);
+
+                    InventoryItems[2] = currentItem;
+                    _inventoryUI.GetChild(2).GetChild(0).GetComponent<Image>().sprite = currentItem.Icon;
+                    _inventoryUI.GetChild(2).gameObject.SetActive(true);
+                    Destroy(currentItem.gameObject);
+                    return;
+                }
+            }
         }
         else
         {
             InventoryItems[2] = currentItem;
             _inventoryUI.GetChild(2).GetChild(0).GetComponent<Image>().sprite = currentItem.Icon;
             _inventoryUI.GetChild(2).gameObject.SetActive(true);
-            Destroy(currentItem);
+            Destroy(currentItem.gameObject);
             return;
         }
 
@@ -137,20 +177,28 @@ public class Inventory : MonoBehaviour
 
     private void RocketLauncherCategory(Item currentItem)
     {
-        if (InventoryItems[3] != null)
+        if (InventoryItems[3] != new Item())
         {
-            Instantiate(InventoryItems[3].DropPrefab, currentItem.transform.position, currentItem.transform.rotation);
-            InventoryItems[3] = currentItem;
-            _inventoryUI.GetChild(3).GetChild(0).GetComponent<Image>().sprite = currentItem.Icon;
-            _inventoryUI.GetChild(3).gameObject.SetActive(true);
-            Destroy(currentItem);
+            for (int i = 0; i < DropItems.Length; i++)
+            {
+                if (InventoryItems[3].ID == DropItems[i].ID)
+                {
+                    Instantiate(DropItems[i].DropPrefab, currentItem.transform.position, currentItem.transform.rotation);
+
+                    InventoryItems[3] = currentItem;
+                    _inventoryUI.GetChild(3).GetChild(0).GetComponent<Image>().sprite = currentItem.Icon;
+                    _inventoryUI.GetChild(3).gameObject.SetActive(true);
+                    Destroy(currentItem.gameObject);
+                    return;
+                }
+            }
         }
         else
         {
             InventoryItems[3] = currentItem;
             _inventoryUI.GetChild(3).GetChild(0).GetComponent<Image>().sprite = currentItem.Icon;
             _inventoryUI.GetChild(3).gameObject.SetActive(true);
-            Destroy(currentItem);
+            Destroy(currentItem.gameObject);
             return;
         }
     }
