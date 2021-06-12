@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public enum WeaponType {Pistol, Rifle, Grenade, RocketLauncher}
+public enum WeaponType {AutomaticRifle, Rifle, Pistol, Grenade, RocketLauncher}
 public class Item : MonoBehaviour
 {
     [Header("Item")]

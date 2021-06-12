@@ -77,6 +77,10 @@ public class Inventory : MonoBehaviour
         {
             PistolCategory(currentItem);
         }
+        else if (currentItem.TypeWeapon == WeaponType.AutomaticRifle)
+        {
+            AutomaticRifleCategory(currentItem);
+        }
         else if (currentItem.TypeWeapon == WeaponType.Rifle)
         {
             RifleCategory(currentItem);
@@ -91,7 +95,7 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    private void PistolCategory(Item currentItem)
+    private void AutomaticRifleCategory(Item currentItem)
     {
         if (InventoryItems[0] != new Item())
         {
@@ -183,7 +187,7 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    private void GrenadeCategory(Item currentItem)
+    private void PistolCategory(Item currentItem)
     {
         if (InventoryItems[2] != new Item())
         {
@@ -195,7 +199,7 @@ public class Inventory : MonoBehaviour
 
                     DisableWeapons();
                     InventoryItems[2] = currentItem;
-                        
+
                     for (int i = 0; i < ItemsInHand.Length; i++)
                     {
                         if (InventoryItems[2].ID == ItemsInHand[i].ID)
@@ -229,7 +233,8 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    private void RocketLauncherCategory(Item currentItem)
+
+    private void GrenadeCategory(Item currentItem)
     {
         if (InventoryItems[3] != new Item())
         {
@@ -241,7 +246,7 @@ public class Inventory : MonoBehaviour
 
                     DisableWeapons();
                     InventoryItems[3] = currentItem;
-
+                        
                     for (int i = 0; i < ItemsInHand.Length; i++)
                     {
                         if (InventoryItems[3].ID == ItemsInHand[i].ID)
@@ -267,6 +272,52 @@ public class Inventory : MonoBehaviour
                 {
                     _inventoryUI.GetChild(3).GetChild(0).GetComponent<Image>().sprite = currentItem.Icon;
                     _inventoryUI.GetChild(3).gameObject.SetActive(true);
+                    ItemsInHand[i].ItemPrefab.SetActive(true);
+                    Destroy(currentItem.gameObject);
+                    return;
+                }
+            }
+        }
+    }
+
+    private void RocketLauncherCategory(Item currentItem)
+    {
+        if (InventoryItems[4] != new Item())
+        {
+            for (int j = 0; j < DropItems.Length; j++)
+            {
+                if (InventoryItems[4].ID == DropItems[j].ID)
+                {
+                    Instantiate(DropItems[j].DropPrefab, currentItem.transform.position, currentItem.transform.rotation);
+
+                    DisableWeapons();
+                    InventoryItems[4] = currentItem;
+
+                    for (int i = 0; i < ItemsInHand.Length; i++)
+                    {
+                        if (InventoryItems[4].ID == ItemsInHand[i].ID)
+                        {
+                            ItemsInHand[i].ItemPrefab.SetActive(true);
+                            _inventoryUI.GetChild(4).GetChild(0).GetComponent<Image>().sprite = currentItem.Icon;
+                            _inventoryUI.GetChild(4).gameObject.SetActive(true);
+                            Destroy(currentItem.gameObject);
+                            return;
+                        }
+                    }
+                }
+            }
+        }
+        else
+        {
+            DisableWeapons();
+            InventoryItems[4] = currentItem;
+
+            for (int i = 0; i < ItemsInHand.Length; i++)
+            {
+                if (InventoryItems[4].ID == ItemsInHand[i].ID)
+                {
+                    _inventoryUI.GetChild(4).GetChild(0).GetComponent<Image>().sprite = currentItem.Icon;
+                    _inventoryUI.GetChild(4).gameObject.SetActive(true);
                     ItemsInHand[i].ItemPrefab.SetActive(true);
                     Destroy(currentItem.gameObject);
                     return;
