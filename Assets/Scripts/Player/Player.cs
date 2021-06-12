@@ -1,15 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour
 {
     [Header("Values")]
     public float PlayerHP;
-    [SerializeField] private float _speed = 10f;
-    [SerializeField] private float _runSpeed = 20f;
-    [SerializeField] private float _jumpForce = 5f;
-    [SerializeField] private float _gravityScale = -9.81f;
+    [SerializeField] private float _crawlSpeed = 20f;
+    [SerializeField] private float _crouchSpeed = 50f;
+    [SerializeField] private float _speed = 80f;
+    [SerializeField] private float _runSpeed = 100f;
+    [SerializeField] private float _jumpForce = 30f;
+    [SerializeField] private float _gravityScale = -200f;
 
     [Header("Controller")]
     [SerializeField] private CharacterController _characterController;
@@ -23,8 +23,10 @@ public class Player : MonoBehaviour
     [SerializeField] private float _interpolationSpeed = 0.7f;
 
     [Header("Buttons")]
-    public KeyCode _buttonRun = KeyCode.LeftShift;
-    public KeyCode _buttonJump = KeyCode.Space;
+    public KeyCode ButtonRun = KeyCode.LeftShift;
+    public KeyCode ButtonJump = KeyCode.Space;
+    public KeyCode CrouchButton = KeyCode.C;
+    public KeyCode CrawlButton = KeyCode.LeftControl;
 
     [Header("Gizmos Color")]
     [SerializeField] private float _red, _green, _blue;
@@ -32,8 +34,11 @@ public class Player : MonoBehaviour
     private Vector3 _moveDirection;
     private Vector3 _velocity;
 
-    [SerializeField] private bool _isGrounded;
     private float _chachedSpeed;
+
+    private bool _isGrounded;
+    private bool _isCrouchEnable;
+    private bool _isCrawlEnable;
 
     private void Start()
     {
@@ -51,6 +56,8 @@ public class Player : MonoBehaviour
 
         Jump();
         Movement();
+        CrawlPose();
+        CrouchPose();
         Run();
 
         //Gravity
@@ -60,7 +67,7 @@ public class Player : MonoBehaviour
 
     private void Run()
     {
-        if (Input.GetKey(_buttonRun))
+        if (Input.GetKey(ButtonRun) && !_isCrouchEnable && !_isCrawlEnable)
         {
             _speed = Mathf.Lerp(_speed, _runSpeed, _interpolationSpeed);
         }
@@ -81,14 +88,71 @@ public class Player : MonoBehaviour
         _characterController.Move(_moveDirection * _speed * Time.deltaTime);
     }
 
+    private void CrouchPose()
+    {
+        if (Input.GetKeyDown(CrouchButton))
+        {
+            if (!_isCrouchEnable)
+            {
+                _speed = _crouchSpeed;
+                Debug.Log("Work");
+                transform.localScale = new Vector3(transform.localScale.x, 20f, transform.localScale.z);
+                _isCrouchEnable = true;
+                _isCrawlEnable = false;
+            }
+            else
+            {
+                _speed = _chachedSpeed;
+                transform.localScale = new Vector3(transform.localScale.x, 30f, transform.localScale.z);
+                _isCrouchEnable = false;
+                _isCrawlEnable = false;
+            }
+        }
+    }
+
+    private void CrawlPose()
+    {
+        if (Input.GetKeyDown(CrawlButton))
+        {
+            if (!_isCrawlEnable)
+            {
+                _speed = _crawlSpeed;
+                Debug.Log("Work");
+                transform.localScale = new Vector3(transform.localScale.x, 10f, transform.localScale.z);
+                _isCrouchEnable = false;
+                _isCrawlEnable = true;
+            }
+            else
+            {
+                _speed = _chachedSpeed;
+                transform.localScale = new Vector3(transform.localScale.x, 20f, transform.localScale.z);
+                _isCrouchEnable = true;
+                _isCrawlEnable = false;
+            }
+        }
+    }
+
     private void Jump()
     {
-        if (Input.GetKeyDown(_buttonJump))
+        if (Input.GetKeyDown(ButtonJump) && !_isCrouchEnable && !_isCrawlEnable)
         {
             if (_isGrounded)
             {
                 _velocity.y = Mathf.Sqrt(_jumpForce * -2 * _gravityScale);
             }
+        }
+        else if (Input.GetKeyDown(ButtonJump) && _isCrouchEnable)
+        {
+            _speed = _chachedSpeed;
+            transform.localScale = new Vector3(transform.localScale.x, 30f, transform.localScale.z);
+            _isCrouchEnable = false;
+        }
+        else if (Input.GetKeyDown(ButtonJump) && _isCrawlEnable)
+        {
+            _speed = _chachedSpeed;
+            transform.localScale = new Vector3(transform.localScale.x, 20f, transform.localScale.z);
+            _isCrawlEnable = false;
+            _isCrouchEnable = true;
         }
     }
 

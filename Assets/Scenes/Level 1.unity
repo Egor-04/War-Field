@@ -2458,6 +2458,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerHP: 100
+  _crawlSpeed: 20
+  _crouchSpeed: 50
   _speed: 80
   _runSpeed: 100
   _jumpForce: 30
@@ -2469,12 +2471,13 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   _interpolationSpeed: 0.7
-  _buttonRun: 304
-  _buttonJump: 32
+  ButtonRun: 304
+  ButtonJump: 32
+  CrouchButton: 99
+  CrawlButton: 306
   _red: 1
-  _green: 0.77
+  _green: 1
   _blue: 0
-  _isGrounded: 0
 --- !u!1 &550478472
 GameObject:
   m_ObjectHideFlags: 0
@@ -5360,7 +5363,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0.626, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -5500,6 +5503,7 @@ MonoBehaviour:
   Sensitivity: 5
   PlayerCamera: {fileID: 0}
   _body: {fileID: 536419025}
+  _offsetY: 1.293
   _minRotation: -90
   _maxRotation: 90
 --- !u!1 &967458096

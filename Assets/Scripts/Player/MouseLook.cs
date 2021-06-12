@@ -7,6 +7,9 @@ public class MouseLook : MonoBehaviour
     public Camera PlayerCamera;
     [SerializeField] private Transform _body;
 
+    [Header("Camera Offset")]
+    [SerializeField] private float _offsetY = 1.293f;
+
     [Header("Clamp Rotation")]
     [SerializeField] private float _minRotation = -90;
     [SerializeField] private float _maxRotation = 90;
@@ -20,6 +23,7 @@ public class MouseLook : MonoBehaviour
 
     private void Update()
     {
+        //PlayerCamera.transform.position = new Vector3(_body.position.x, _body.position.y * _offsetY, _body.position.z);
         MouseRotation();
     }
 
