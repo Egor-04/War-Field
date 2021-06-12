@@ -39,6 +39,9 @@ public class Player : MonoBehaviour
     {
         _chachedSpeed = _speed;
         _characterController = GetComponent<CharacterController>();
+
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     private void Update()
