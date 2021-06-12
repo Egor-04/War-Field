@@ -89,6 +89,7 @@ public class Inventory : MonoBehaviour
             InventoryItems[0] = currentItem;
             _inventoryUI.GetChild(0).GetChild(0).GetComponent<Image>().sprite = currentItem.Icon;
             _inventoryUI.GetChild(0).gameObject.SetActive(true);
+            Destroy(currentItem);
             return;
         }
     }
@@ -108,6 +109,7 @@ public class Inventory : MonoBehaviour
             InventoryItems[1] = currentItem;
             _inventoryUI.GetChild(1).GetChild(0).GetComponent<Image>().sprite = currentItem.Icon;
             _inventoryUI.GetChild(1).gameObject.SetActive(true);
+            Destroy(currentItem);
             return;
         }
     }
@@ -127,6 +129,7 @@ public class Inventory : MonoBehaviour
             InventoryItems[2] = currentItem;
             _inventoryUI.GetChild(2).GetChild(0).GetComponent<Image>().sprite = currentItem.Icon;
             _inventoryUI.GetChild(2).gameObject.SetActive(true);
+            Destroy(currentItem);
             return;
         }
 
@@ -147,6 +150,7 @@ public class Inventory : MonoBehaviour
             InventoryItems[3] = currentItem;
             _inventoryUI.GetChild(3).GetChild(0).GetComponent<Image>().sprite = currentItem.Icon;
             _inventoryUI.GetChild(3).gameObject.SetActive(true);
+            Destroy(currentItem);
             return;
         }
     }

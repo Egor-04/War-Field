@@ -826,6 +826,7 @@ GameObject:
   - component: {fileID: 347983160}
   - component: {fileID: 347983159}
   - component: {fileID: 347983158}
+  - component: {fileID: 347983162}
   m_Layer: 0
   m_Name: Pistol
   m_TagString: Untagged
@@ -908,8 +909,25 @@ Transform:
   m_Children:
   - {fileID: 1988650413}
   m_Father: {fileID: 1974245436}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &347983162
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 347983157}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d173ecd463ef21c4e805f1bc30d29587, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TypeWeapon: 0
+  ID: 1
+  ItemName: Pistol Colt
+  Icon: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  DropPrefab: {fileID: 347983157}
 --- !u!1 &349465005
 GameObject:
   m_ObjectHideFlags: 0
@@ -2546,8 +2564,9 @@ GameObject:
   - component: {fileID: 840388087}
   - component: {fileID: 840388086}
   - component: {fileID: 840388085}
+  - component: {fileID: 840388088}
   m_Layer: 0
-  m_Name: Cylinder
+  m_Name: Grenade
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2561,12 +2580,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 840388083}
   m_LocalRotation: {x: -0.7366791, y: -0, z: -0, w: 0.67624253}
-  m_LocalPosition: {x: -61.24, y: -38.8, z: 64.1}
+  m_LocalPosition: {x: -61.24, y: -31.2, z: 63.4}
   m_LocalScale: {x: 5, y: 3, z: 5}
   m_Children:
   - {fileID: 2059842518}
   m_Father: {fileID: 1974245436}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: -94.899, y: 0, z: 0}
 --- !u!136 &840388085
 CapsuleCollider:
@@ -2631,6 +2650,23 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 840388083}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &840388088
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 840388083}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d173ecd463ef21c4e805f1bc30d29587, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TypeWeapon: 2
+  ID: 3
+  ItemName: German Grenade
+  Icon: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  DropPrefab: {fileID: 840388083}
 --- !u!1001 &848156888
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3489,6 +3525,7 @@ GameObject:
   - component: {fileID: 1070811191}
   - component: {fileID: 1070811190}
   - component: {fileID: 1070811189}
+  - component: {fileID: 1070811193}
   m_Layer: 0
   m_Name: Rifle
   m_TagString: Untagged
@@ -3571,8 +3608,25 @@ Transform:
   m_Children:
   - {fileID: 1483539670}
   m_Father: {fileID: 1974245436}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1070811193
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1070811188}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d173ecd463ef21c4e805f1bc30d29587, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TypeWeapon: 1
+  ID: 2
+  ItemName: Tompson
+  Icon: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
+  DropPrefab: {fileID: 1070811188}
 --- !u!1001 &1088667728
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4886,6 +4940,7 @@ GameObject:
   - component: {fileID: 1631504769}
   - component: {fileID: 1631504768}
   - component: {fileID: 1631504767}
+  - component: {fileID: 1631504770}
   m_Layer: 0
   m_Name: Launcher
   m_TagString: Untagged
@@ -4906,7 +4961,7 @@ Transform:
   m_Children:
   - {fileID: 1237384695}
   m_Father: {fileID: 1974245436}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 90, y: -90, z: 0}
 --- !u!136 &1631504767
 CapsuleCollider:
@@ -4971,6 +5026,23 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1631504765}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1631504770
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1631504765}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d173ecd463ef21c4e805f1bc30d29587, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TypeWeapon: 3
+  ID: 4
+  ItemName: Panzerfaust
+  Icon: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
+  DropPrefab: {fileID: 1631504765}
 --- !u!1001 &1641124270
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5778,10 +5850,10 @@ Transform:
   m_LocalPosition: {x: 2327.5195, y: 91.436874, z: 479.6919}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1070811192}
   - {fileID: 347983161}
-  - {fileID: 1631504766}
+  - {fileID: 1070811192}
   - {fileID: 840388084}
+  - {fileID: 1631504766}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
