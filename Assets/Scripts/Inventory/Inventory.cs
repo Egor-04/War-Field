@@ -95,26 +95,45 @@ public class Inventory : MonoBehaviour
     {
         if (InventoryItems[0] != new Item())
         {
-            for (int i = 0; i < DropItems.Length; i++)
+            for (int j = 0; j < DropItems.Length; j++)
             {
-                if (InventoryItems[0].ID == DropItems[i].ID)
+                if (InventoryItems[0].ID == DropItems[j].ID)
                 {
-                    Instantiate(DropItems[i].DropPrefab, currentItem.transform.position, currentItem.transform.rotation);
+                    Instantiate(DropItems[j].DropPrefab, currentItem.transform.position, currentItem.transform.rotation);
+
+                    DisableWeapons();
                     InventoryItems[0] = currentItem;
-                    _inventoryUI.GetChild(0).GetChild(0).GetComponent<Image>().sprite = currentItem.Icon;
-                    _inventoryUI.GetChild(0).gameObject.SetActive(true);
-                    Destroy(currentItem.gameObject);
-                    return;
+
+                    for (int i = 0; i < ItemsInHand.Length; i++)
+                    {
+                        if (InventoryItems[0].ID == ItemsInHand[i].ID)
+                        {
+                            ItemsInHand[i].ItemPrefab.SetActive(true);
+                            _inventoryUI.GetChild(0).GetChild(0).GetComponent<Image>().sprite = currentItem.Icon;
+                            _inventoryUI.GetChild(0).gameObject.SetActive(true);
+                            Destroy(currentItem.gameObject);
+                            return;
+                        }
+                    }
                 }
             }
         }
         else
         {
+            DisableWeapons();
             InventoryItems[0] = currentItem;
-            _inventoryUI.GetChild(0).GetChild(0).GetComponent<Image>().sprite = currentItem.Icon;
-            _inventoryUI.GetChild(0).gameObject.SetActive(true);
-            Destroy(currentItem.gameObject);
-            return;
+
+            for (int i = 0; i < ItemsInHand.Length; i++)
+            {
+                if (InventoryItems[0].ID == ItemsInHand[i].ID)
+                {
+                    _inventoryUI.GetChild(0).GetChild(0).GetComponent<Image>().sprite = currentItem.Icon;
+                    _inventoryUI.GetChild(0).gameObject.SetActive(true);
+                    ItemsInHand[i].ItemPrefab.SetActive(true);
+                    Destroy(currentItem.gameObject);
+                    return;
+                }
+            }
         }
     }
 
@@ -122,27 +141,45 @@ public class Inventory : MonoBehaviour
     {
         if (InventoryItems[1] != new Item())
         {
-            for (int i = 0; i < DropItems.Length; i++)
+            for (int j = 0; j < DropItems.Length; j++)
             {
-                if (InventoryItems[1].ID == DropItems[i].ID)
+                if (InventoryItems[1].ID == DropItems[j].ID)
                 {
-                    Instantiate(DropItems[i].DropPrefab, currentItem.transform.position, currentItem.transform.rotation);
+                    Instantiate(DropItems[j].DropPrefab, currentItem.transform.position, currentItem.transform.rotation);
 
+                    DisableWeapons();
                     InventoryItems[1] = currentItem;
-                    _inventoryUI.GetChild(1).GetChild(0).GetComponent<Image>().sprite = currentItem.Icon;
-                    _inventoryUI.GetChild(1).gameObject.SetActive(true);
-                    Destroy(currentItem.gameObject);
-                    return;
+
+                    for (int i = 0; i < ItemsInHand.Length; i++)
+                    {
+                        if (InventoryItems[1].ID == ItemsInHand[i].ID)
+                        {
+                            ItemsInHand[i].ItemPrefab.SetActive(true);
+                            _inventoryUI.GetChild(1).GetChild(0).GetComponent<Image>().sprite = currentItem.Icon;
+                            _inventoryUI.GetChild(1).gameObject.SetActive(true);
+                            Destroy(currentItem.gameObject);
+                            return;
+                        }
+                    }
                 }
             }
         }
         else
         {
+            DisableWeapons();
             InventoryItems[1] = currentItem;
-            _inventoryUI.GetChild(1).GetChild(0).GetComponent<Image>().sprite = currentItem.Icon;
-            _inventoryUI.GetChild(1).gameObject.SetActive(true);
-            Destroy(currentItem.gameObject);
-            return;
+
+            for (int i = 0; i < ItemsInHand.Length; i++)
+            {
+                if (InventoryItems[1].ID == ItemsInHand[i].ID)
+                {
+                    _inventoryUI.GetChild(1).GetChild(0).GetComponent<Image>().sprite = currentItem.Icon;
+                    _inventoryUI.GetChild(1).gameObject.SetActive(true);
+                    ItemsInHand[i].ItemPrefab.SetActive(true);
+                    Destroy(currentItem.gameObject);
+                    return;
+                }
+            }
         }
     }
 
@@ -150,56 +187,103 @@ public class Inventory : MonoBehaviour
     {
         if (InventoryItems[2] != new Item())
         {
-            for (int i = 0; i < DropItems.Length; i++)
+            for (int j = 0; j < DropItems.Length; j++)
             {
-                if (InventoryItems[2].ID == DropItems[i].ID)
+                if (InventoryItems[2].ID == DropItems[j].ID)
                 {
-                    Instantiate(DropItems[i].DropPrefab, currentItem.transform.position, currentItem.transform.rotation);
+                    Instantiate(DropItems[j].DropPrefab, currentItem.transform.position, currentItem.transform.rotation);
 
+                    DisableWeapons();
                     InventoryItems[2] = currentItem;
-                    _inventoryUI.GetChild(2).GetChild(0).GetComponent<Image>().sprite = currentItem.Icon;
-                    _inventoryUI.GetChild(2).gameObject.SetActive(true);
-                    Destroy(currentItem.gameObject);
-                    return;
+                        
+                    for (int i = 0; i < ItemsInHand.Length; i++)
+                    {
+                        if (InventoryItems[2].ID == ItemsInHand[i].ID)
+                        {
+                            ItemsInHand[i].ItemPrefab.SetActive(true);
+                            _inventoryUI.GetChild(2).GetChild(0).GetComponent<Image>().sprite = currentItem.Icon;
+                            _inventoryUI.GetChild(2).gameObject.SetActive(true);
+                            Destroy(currentItem.gameObject);
+                            return;
+                        }
+                    }
                 }
             }
         }
         else
         {
+            DisableWeapons();
             InventoryItems[2] = currentItem;
-            _inventoryUI.GetChild(2).GetChild(0).GetComponent<Image>().sprite = currentItem.Icon;
-            _inventoryUI.GetChild(2).gameObject.SetActive(true);
-            Destroy(currentItem.gameObject);
-            return;
-        }
 
+            for (int i = 0; i < ItemsInHand.Length; i++)
+            {
+                if (InventoryItems[2].ID == ItemsInHand[i].ID)
+                {
+                    _inventoryUI.GetChild(2).GetChild(0).GetComponent<Image>().sprite = currentItem.Icon;
+                    _inventoryUI.GetChild(2).gameObject.SetActive(true);
+                    ItemsInHand[i].ItemPrefab.SetActive(true);
+                    Destroy(currentItem.gameObject);
+                    return;
+                }
+            }
+        }
     }
 
     private void RocketLauncherCategory(Item currentItem)
     {
         if (InventoryItems[3] != new Item())
         {
-            for (int i = 0; i < DropItems.Length; i++)
+            for (int j = 0; j < DropItems.Length; j++)
             {
-                if (InventoryItems[3].ID == DropItems[i].ID)
+                if (InventoryItems[3].ID == DropItems[j].ID)
                 {
-                    Instantiate(DropItems[i].DropPrefab, currentItem.transform.position, currentItem.transform.rotation);
+                    Instantiate(DropItems[j].DropPrefab, currentItem.transform.position, currentItem.transform.rotation);
 
+                    DisableWeapons();
                     InventoryItems[3] = currentItem;
-                    _inventoryUI.GetChild(3).GetChild(0).GetComponent<Image>().sprite = currentItem.Icon;
-                    _inventoryUI.GetChild(3).gameObject.SetActive(true);
-                    Destroy(currentItem.gameObject);
-                    return;
+
+                    for (int i = 0; i < ItemsInHand.Length; i++)
+                    {
+                        if (InventoryItems[3].ID == ItemsInHand[i].ID)
+                        {
+                            ItemsInHand[i].ItemPrefab.SetActive(true);
+                            _inventoryUI.GetChild(3).GetChild(0).GetComponent<Image>().sprite = currentItem.Icon;
+                            _inventoryUI.GetChild(3).gameObject.SetActive(true);
+                            Destroy(currentItem.gameObject);
+                            return;
+                        }
+                    }
                 }
             }
         }
         else
         {
+            DisableWeapons();
             InventoryItems[3] = currentItem;
-            _inventoryUI.GetChild(3).GetChild(0).GetComponent<Image>().sprite = currentItem.Icon;
-            _inventoryUI.GetChild(3).gameObject.SetActive(true);
-            Destroy(currentItem.gameObject);
-            return;
+
+            for (int i = 0; i < ItemsInHand.Length; i++)
+            {
+                if (InventoryItems[3].ID == ItemsInHand[i].ID)
+                {
+                    _inventoryUI.GetChild(3).GetChild(0).GetComponent<Image>().sprite = currentItem.Icon;
+                    _inventoryUI.GetChild(3).gameObject.SetActive(true);
+                    ItemsInHand[i].ItemPrefab.SetActive(true);
+                    Destroy(currentItem.gameObject);
+                    return;
+                }
+            }
+        }
+    }
+
+    private void DisableWeapons()
+    {
+        for (int i = 0; i < ItemsInHand.Length; i++)
+        {
+            if (ItemsInHand[i].ItemPrefab.activeSelf)
+            {
+                ItemsInHand[i].ItemPrefab.SetActive(false);
+                break;
+            }
         }
     }
 }

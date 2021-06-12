@@ -107,7 +107,7 @@ GameObject:
   - component: {fileID: 7370742876901034448}
   - component: {fileID: 7370742876901034463}
   - component: {fileID: 7370742876901034462}
-  - component: {fileID: 7370742876901034450}
+  - component: {fileID: 517033108402330360}
   m_Layer: 0
   m_Name: Pistol Magnum
   m_TagString: Untagged
@@ -192,7 +192,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &7370742876901034450
+--- !u!114 &517033108402330360
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -208,6 +208,7 @@ MonoBehaviour:
   ID: 6
   ItemName: Pistol Magnum
   Icon: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  ActivateItemInHand: 0
 --- !u!1 &7370742877470122308
 GameObject:
   m_ObjectHideFlags: 0
