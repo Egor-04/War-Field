@@ -4,15 +4,31 @@ public class Player : MonoBehaviour
 {
     [Header("Values")]
     public float PlayerHP;
-    [SerializeField] private float _crawlSpeed = 30f;
-    [SerializeField] private float _crouchSpeed = 50f;
+
+    [Header("Speed")]
     [SerializeField] private float _speed = 80f;
     [SerializeField] private float _runSpeed = 100f;
+
+    [Header("Crouch && Crawl Speed")]
+    [SerializeField] private float _crawlSpeed = 30f;
+    [SerializeField] private float _crouchSpeed = 50f;
+
+    [Header("Height,Crouch && Crawl Height")]
+    [SerializeField] private float _height = 2f;
+    [SerializeField] private float _crouchHeight = 1f;
+    [SerializeField] private float _crawlHeight = 0.5f;
+
+    [Header("Jump Force")]
     [SerializeField] private float _jumpForce = 30f;
+
+    [Header("Gravity Scale")]
     [SerializeField] private float _gravityScale = -200f;
 
     [Header("Controller")]
     [SerializeField] private CharacterController _characterController;
+
+    [Header("Collider")]
+    [SerializeField] private CapsuleCollider _playerCollider;
 
     [Header("Jump")]
     [SerializeField] float _radius;
@@ -43,6 +59,7 @@ public class Player : MonoBehaviour
     private void Start()
     {
         _chachedSpeed = _speed;
+        _playerCollider = GetComponent<CapsuleCollider>();
         _characterController = GetComponent<CharacterController>();
 
         Cursor.lockState = CursorLockMode.Locked;
@@ -95,14 +112,16 @@ public class Player : MonoBehaviour
             if (!_isCrouchEnable)
             {
                 _speed = _crouchSpeed;
-                transform.localScale = new Vector3(transform.localScale.x, 20f, transform.localScale.z);
+                _playerCollider.height = _crouchHeight;
+                _characterController.height = _crouchHeight;
                 _isCrouchEnable = true;
                 _isCrawlEnable = false;
             }
             else
             {
                 _speed = _chachedSpeed;
-                transform.localScale = new Vector3(transform.localScale.x, 30f, transform.localScale.z);
+                _playerCollider.height = _height;
+                _characterController.height = _height;
                 _isCrouchEnable = false;
                 _isCrawlEnable = false;
             }
@@ -116,14 +135,16 @@ public class Player : MonoBehaviour
             if (!_isCrawlEnable)
             {
                 _speed = _crawlSpeed;
-                transform.localScale = new Vector3(transform.localScale.x, 10f, transform.localScale.z);
+                _playerCollider.height = _crawlHeight;
+                _characterController.height = _crawlHeight;
                 _isCrouchEnable = false;
                 _isCrawlEnable = true;
             }
             else
             {
                 _speed = _chachedSpeed;
-                transform.localScale = new Vector3(transform.localScale.x, 20f, transform.localScale.z);
+                _playerCollider.height = _crouchHeight;
+                _characterController.height = _crouchHeight;
                 _isCrouchEnable = true;
                 _isCrawlEnable = false;
             }
@@ -142,13 +163,15 @@ public class Player : MonoBehaviour
         else if (Input.GetKeyDown(ButtonJump) && _isCrouchEnable)
         {
             _speed = _chachedSpeed;
-            transform.localScale = new Vector3(transform.localScale.x, 30f, transform.localScale.z);
+            _playerCollider.height = _height;
+            _characterController.height = _height;
             _isCrouchEnable = false;
         }
         else if (Input.GetKeyDown(ButtonJump) && _isCrawlEnable)
         {
             _speed = _chachedSpeed;
-            transform.localScale = new Vector3(transform.localScale.x, 20f, transform.localScale.z);
+            _playerCollider.height = _crouchHeight;
+            _characterController.height = _crouchHeight;
             _isCrawlEnable = false;
             _isCrouchEnable = true;
         }
