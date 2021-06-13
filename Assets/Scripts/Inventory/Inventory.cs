@@ -21,11 +21,20 @@ public class Inventory : MonoBehaviour
     [Header("Inventory")]
     public List<Item> InventoryItems;
 
+    [Header("All Items for Fast Use")]
+    public ItemTake[] ItemsTake;
+
     [Header("Items In Hand")]
     public ItemInHand[] ItemsInHand;
 
     [Header("Drop Items")]
     public DropItem[] DropItems;
+
+    [Serializable]
+    public class ItemTake
+    {
+
+    }
 
     [Serializable]
     public class ItemInHand
@@ -49,6 +58,11 @@ public class Inventory : MonoBehaviour
         {
             InventoryItems.Add(new Item());
         }
+
+        //for (int i = 0; i < ItemsTake.Length; i++)
+        //{
+        //    AddItem(ItemsTake[i].);
+        //}
     }
 
     private void Update()

@@ -4,7 +4,7 @@ public class Player : MonoBehaviour
 {
     [Header("Values")]
     public float PlayerHP;
-    [SerializeField] private float _crawlSpeed = 20f;
+    [SerializeField] private float _crawlSpeed = 30f;
     [SerializeField] private float _crouchSpeed = 50f;
     [SerializeField] private float _speed = 80f;
     [SerializeField] private float _runSpeed = 100f;
@@ -71,7 +71,7 @@ public class Player : MonoBehaviour
         {
             _speed = Mathf.Lerp(_speed, _runSpeed, _interpolationSpeed);
         }
-        else
+        else if (!Input.GetKeyDown(ButtonRun) && !_isCrouchEnable && !_isCrawlEnable)
         {
             _speed = _chachedSpeed;
         }
@@ -95,7 +95,6 @@ public class Player : MonoBehaviour
             if (!_isCrouchEnable)
             {
                 _speed = _crouchSpeed;
-                Debug.Log("Work");
                 transform.localScale = new Vector3(transform.localScale.x, 20f, transform.localScale.z);
                 _isCrouchEnable = true;
                 _isCrawlEnable = false;
@@ -117,7 +116,6 @@ public class Player : MonoBehaviour
             if (!_isCrawlEnable)
             {
                 _speed = _crawlSpeed;
-                Debug.Log("Work");
                 transform.localScale = new Vector3(transform.localScale.x, 10f, transform.localScale.z);
                 _isCrouchEnable = false;
                 _isCrawlEnable = true;
